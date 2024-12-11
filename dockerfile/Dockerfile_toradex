@@ -1,0 +1,10 @@
+FROM debian:11 AS builder
+LABEL authors="Giovanna Tormena, Bruno Ciota, Juliana Martins, Carlos Kubota"
+
+RUN apt-get -y update \
+    && apt-get -y install \
+      libopenblas0 \
+      liblapack3 \
+      libarpack2 \
+      libsuperlu5 \
+      libarmadillo10
