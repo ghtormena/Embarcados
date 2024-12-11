@@ -1,0 +1,3 @@
+/home/giovanna/Embarcados/build_x86/CMakeFiles/eesc-aero-embedded-systems.dir
+/home/giovanna/Embarcados/build_x86/CMakeFiles/edit_cache.dir
+/home/giovanna/Embarcados/build_x86/CMakeFiles/rebuild_cache.dir

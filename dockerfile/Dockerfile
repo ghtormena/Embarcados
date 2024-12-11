@@ -21,11 +21,14 @@ RUN dpkg --add-architecture armhf \
       libarmadillo-dev:armhf
 
 FROM builder AS builder-lely-core
-RUN mkdir /lely-core && touch /lely-core/xablau
+RUN mkdir -p /lely-core && touch /lely-core/xablau
 COPY lely-core/ /lely-core
-RUN mkdir /lely-core/build-arm-docker-debian-11
-RUN mkdir /lely-core/install-arm-docker-debian-11
+WORKDIR /lely-core
+RUN autoreconf -i
+RUN mkdir -p /lely-core/build-arm-docker-debian-11
+RUN mkdir -p /lely-core/install-arm-docker-debian-11
 WORKDIR /lely-core/build-arm-docker-debian-11
+RUN rm -rf ./*
 RUN ../configure --host=arm-linux-gnueabihf --disable-python --disable-tests --prefix=/lely-core/install-arm-docker-debian-11 \
     && make -j20 \
     && make install

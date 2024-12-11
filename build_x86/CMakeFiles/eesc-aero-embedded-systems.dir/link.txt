@@ -1,0 +1,1 @@
+/usr/bin/c++  -O0 -pthread CMakeFiles/eesc-aero-embedded-systems.dir/main.cpp.o CMakeFiles/eesc-aero-embedded-systems.dir/ManoplaLelyBBB.cpp.o CMakeFiles/eesc-aero-embedded-systems.dir/utils/utils.cpp.o -o eesc-aero-embedded-systems   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib -llely-coapp -llely-io2 -llely-ev -llely-co -llely-can -llely-util -llely-libc -lrt -lblas -larmadillo 

@@ -11,6 +11,26 @@ if (ARM_TARGET)
     set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
     set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
     set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+
+elseif(ARM64_TARGET)
+    message(STATUS "ARM64!")
+
+    set(CMAKE_SYSTEM_PROCESSOR aarch64)
+
+    # Name of C compiler.
+    set(CMAKE_C_COMPILER "/usr/bin/aarch64-linux-gnu-gcc")
+    set(CMAKE_CXX_COMPILER "/usr/bin/aarch64-linux-gnu-g++")
+
+    # Where to look for the target environment. (More paths can be added here)
+    set(CMAKE_FIND_ROOT_PATH /usr/aarch64-linux-gnu)
+    #set(CMAKE_SYSROOT /usr/aarch64-linux-gnu)
+
+    set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+    set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+    set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+    set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+
+    set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE arm64)
 else()
     message(STATUS "X86_64 INSTEAD OF ARM!")
 endif()
@@ -37,6 +57,11 @@ pkg_check_modules(LELY-COAPP REQUIRED IMPORTED_TARGET liblely-coapp)
 #target_link_libraries(${PROJECT_NAME} Threads::Threads)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 add_executable(${PROJECT_NAME} main.cpp ManoplaLelyBBB.cpp utils/utils.cpp utils/json.h)
+
+include_directories(${LELY-COAPP_INCLUDEDIR} /usr/local/include /usr/include)
+
+message(STATUS "Include directories: ${CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE}")
+message(STATUS "Additional include paths: ${CMAKE_INCLUDE_PATH}")
 
 #target_include_directories(${PROJECT_NAME} PRIVATE PkgConfig::LELY-IO2)
 
